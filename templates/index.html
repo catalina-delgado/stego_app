@@ -37,20 +37,17 @@
           <div class="title">Steganalysis</div>
           <div class="row">
             <div class="topbar">
-              <select id="modelSelect" onchange="updateConsole()">
+              <select id="modelSelect">
                   <option value="Modelo A">Modelo A</option>
-                  <option value="Modelo B">Modelo B</option>
-                  <option value="Modelo C">Modelo C</option>
               </select>
-              <div class="console" id="console">
+              <!-- <div class="console" id="console">
                 <div class="column">
                   <label>Accuracy:</label>
                   <div id="precsion">-%</div>
                 </div>          
-              </div>
+              </div> -->
               <div class="topbar-button">
-                <button id="playBoton"><i class="fas fa-play"></i></button>
-                <div class="tooltip">Run</div>
+                <div class="loader" id="loader"></div>
               </div>
               <div class="vertical-separator"></div>
               <div class="console" id="console">
