@@ -52,7 +52,7 @@
     width: 100%;
     display: flex;
     /* justify-content: center; */
-    padding-left: calc(4%);
+    padding-left: calc(50% - 400px)!important;
     align-items: center;
     flex-direction: row;
     padding: 10px 20px;
@@ -99,4 +99,23 @@
     height: 2px;
     background: #3c3a3a;
     margin: auto;
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    display: none; /* Oculto por defecto */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
