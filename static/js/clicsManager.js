@@ -1,27 +1,26 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // document.getElementById('downloadBoton').addEventListener('click', function() {
-    //     // Contenido del archivo a descargar (puedes cambiar esto por el contenido real de tu archivo)
-    //     var contenidoArchivo = 'Este es el contenido del archivo a descargar';
+    document.getElementById('downloadBoton').addEventListener('click', function() {
+        var divImagen = document.getElementById('results');
+        var img = divImagen.querySelector('img');
+        var selectModels = document.getElementById('modelSelect');
+        var selectedModel = selectModels ? selectModels.value : 'default';
 
-    //     // Crear un objeto Blob que contiene el contenido del archivo
-    //     var blob = new Blob([contenidoArchivo], { type: 'text/plain' });
-
-    //     // Crear un objeto URL que apunta al Blob
-    //     var url = window.URL.createObjectURL(blob);
-
-    //     // Crear un enlace <a> para la descarga
-    //     var enlaceDescarga = document.createElement('a');
-    //     enlaceDescarga.href = url;
-    //     enlaceDescarga.download = 'archivo.txt'; // Nombre del archivo a descargar
-    //     enlaceDescarga.textContent = 'Descargar Archivo';
-
-    //     // Agregar el enlace al documento y simular un clic en él para iniciar la descarga
-    //     document.body.appendChild(enlaceDescarga);
-    //     enlaceDescarga.click();
-
-    //     // Limpiar el objeto URL creado para liberar recursos
-    //     window.URL.revokeObjectURL(url);
-    // });
+        if (img) {
+            var url = img.src;
+            var enlaceDescarga = document.createElement('a');
+            enlaceDescarga.href = url;
+            enlaceDescarga.download = selectedModel + '-gradcam-image.png'; // Nombre del archivo a descargar
+            enlaceDescarga.textContent = 'Descargar Imagen';
+            
+            document.body.appendChild(enlaceDescarga);
+            enlaceDescarga.click();
+            
+            document.body.removeChild(enlaceDescarga);
+        } else {
+            window.alert('There is no image to download.');
+            console.log('There is no image to download.');
+        }
+    });
 
     document.getElementById('uploadBoton').addEventListener('change', function(event) {
         var archivo = evento.target.files[0];
@@ -95,13 +94,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 })
 
-function obtenerIcono(tipoArchivo) {
-
-    var extPermitidas = /(.jpg|.png|.pgm)$/i;
-
-    if (tipoArchivo in extPermitidas) {
-        tipo = 'iconxlsx'
-    }
-
-    return 'src/static/images/'+tipo
-}
