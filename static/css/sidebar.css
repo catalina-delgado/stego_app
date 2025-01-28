@@ -17,7 +17,7 @@
     border: none;
     border-radius: 50%;
     margin: 5px;
-    background-color: #2644bb;
+    background-color: #3498db;
     color: white;
     font-size: 18px;
     cursor: pointer;
@@ -29,8 +29,8 @@
     justify-content: center;
     display: flex;
 }
-.sidebar button:hover {
-    background-color: #ff1f1f;
+.sidebar button:hover, .button:hover {
+    background-color: #2644bb;
 }
 .tooltip {
     position: absolute;
