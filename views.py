@@ -11,12 +11,12 @@ def home(request):
     return render(request, 'index.html')
 
 class GenerateGradCAMView(View):
-    def get(self, request):
-        model_name = request.GET.get('model_name')
+    def post(self, request):
+        model_name = request.POST.get('model_name')
         if not model_name:
             return JsonResponse({"error": "model_name parameter is required"}, status=400)
 
-        image_url = request.GET.get('image_src')
+        image_url = request.POST.get('image_src')
         if not image_url:
             return JsonResponse({"error": "imageSrc parameter is required"}, status=400)
         
