@@ -5,10 +5,13 @@ from generate_map import Map
 import os    
 
 class RequestHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
+    def do_POST(self):
         parsed_path = urlparse(self.path)
-        query_params = parse_qs(parsed_path.query)
         if parsed_path.path == '/api/generate_gradcam':
+            content_length = int(self.headers['Content-Length'])
+            post_data = self.rfile.read(content_length)
+            post_params = parse_qs(post_data.decode('utf-8'))
+
             model_name = query_params.get('model_name', [None])[0]
             image_src = query_params.get('image_src', [None])[0]
             
@@ -37,8 +40,15 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(json.dumps(gradcam_data).encode())
         elif parsed_path.path == '/api/models':
-            models_dir = 'models'
-            models = [name for name in os.listdir(models_dir) if os.path.isdir(os.path.join(models_dir, name))]
+            models_dir = os.path.join(os.path.dirname(__file__), 'models')
+            if not os.path.exists(models_dir):
+                self.send_response(500)
+                self.send_header('Content-Type', 'application/json')
+                self.end_headers()
+                self.wfile.write(json.dumps({"error": f"Directory '{models_dir}' does not exist"}).encode())
+                return
+            
+            models = [name for name in os.listdir(models_dir) if name.endswith('.hdf5')]
             self.send_response(200)
             self.send_header('Content-Type', 'application/json')
             self.end_headers()
