@@ -1,4 +1,4 @@
-from .imports import tf, keras, np, mpl, plt, cv2, BytesIO, Image
+from .imports import tf, keras, np, mpl, BytesIO, Image
 import base64
 import requests
 import os
