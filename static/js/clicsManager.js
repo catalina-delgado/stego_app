@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    document.getElementById('uploadBoton').addEventListener('change', function(event) {
-        var archivo = evento.target.files[0];
+    document.getElementById('uploadBoton').addEventListener('click', function(event) {
+        var archivo = event.target.files[0];
         
         if (archivo && archivo.type.match('image.*')) {
             var lector = new FileReader();
