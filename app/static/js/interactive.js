@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleModelSelectChange() {
         const imageElement = document.getElementById('your_image');
         const imageSrc = imageElement && imageElement.firstElementChild ? imageElement.firstElementChild.src : '';
-        const modelName = document.getElementById('modelSelect').value;
+        const modelCode = document.getElementById('modelSelect').value;
 
         if (!imageSrc) {
             alert('Please upload an image');
@@ -31,21 +31,30 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Invalid image URL');
             return;
         }
-
+        
         const loader = document.getElementById('loader');
         loader.style.display = 'block';
 
         // Crear un objeto FormData para enviar la imagen en el cuerpo de la solicitud
         const formData = new FormData();
-        formData.append('model_name', modelName);
-        formData.append('image_src', imageSrc);
+        formData.append('image', imageSrc);
 
-        fetch('/api/generate_gradcam/', {
+        console.log(modelCode);
+        
+        if (modelCode=='modelo1') {
+            URL = 'https://huggingface.co/spaces/MarilineDelgado/stegoapi/generate_gradCam/'
+        }
+        else {
+            URL = 'http://127.0.0.1:8000/generate_gradCam/'
+        }
+        
+        fetch(URL, {
             method: 'POST',
             body: formData,
             headers: {
                 'X-CSRFToken': csrftoken
-            }
+            },
+            mode: "cors",
         })
         .then(response => response.json())
         .then(data => {
@@ -54,8 +63,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const modelPathElement = document.getElementById('prediction');
             const layerNameElement = document.getElementById('classPrediction');
 
-            modelPathElement.textContent = '-% ' + (data.prediction * 100).toFixed(2);
-            if (layerNameElement) layerNameElement.textContent = data.class_prediction;
+            modelPathElement.textContent = '-% ' + (data.prediction_percentage * 100).toFixed(2);
+            if (layerNameElement) layerNameElement.textContent = data.predicted_class;
 
             if (data.image) {
                 const ImageContiner = document.getElementById('results');
@@ -76,19 +85,4 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('modelSelect').addEventListener('change', handleModelSelectChange);
     document.getElementById('playBoton').addEventListener('click', handleModelSelectChange);
 
-    fetch('/api/models')
-        .then(response => response.json())
-        .then(models => {
-            const modelSelect = document.getElementById('modelSelect');
-            models.forEach(model => {
-                if (model.endsWith('.hdf5')) {
-                    const option = document.createElement('option');
-                    const modelName = model.split('/').pop().replace('.hdf5', '');
-                    option.value = modelName;
-                    option.textContent = modelName;
-                    modelSelect.appendChild(option);
-                }
-            });
-        })
-        .catch(error => console.error('Error:', error));
 });
