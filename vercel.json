@@ -2,20 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "stego_app/wsgi.py",
-      "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb" }
+      "src": "deploy/wsgi.py",
+      "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "stego_app/wsgi.py"
+      "dest": "deploy/wsgi.py"
     }
-  ],
-  "functions": {
-    "api/index.py": {
-      "runtime": "python3.13"
-    }
-  }
+  ]
 }
