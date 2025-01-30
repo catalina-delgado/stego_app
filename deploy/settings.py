@@ -60,7 +60,7 @@ CORS_ALLOWED_ORIGINS = [
     # Agrega otros orígenes permitidos aquí
 ]
 
-ROOT_URLCONF = 'stego_app.urls'
+ROOT_URLCONF = 'deploy.urls'
 
 TEMPLATES = [
     {
@@ -78,7 +78,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'stego_app.wsgi.app'
+WSGI_APPLICATION = 'deploy.wsgi.app'
 
 
 # Database
