@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-q*rsbo-5@895xnh(^z@bv^&1h*xl@4p3aype)a$ei67sr@(t&^'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'MC123MC123')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '').split(',')
 
 
 # Application definition
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+    'corsheaders'
     'app'
 ]
 
@@ -50,6 +50,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+]
+
+# CORS configuration
+CORS_ALLOWED_ORIGINS = [
+    "https://huggingface.co",
+    "https://stegoapp-catalina-delgados-projects.vercel.app/",
+    # Agrega otros orígenes permitidos aquí
 ]
 
 ROOT_URLCONF = 'stego_app.urls'
