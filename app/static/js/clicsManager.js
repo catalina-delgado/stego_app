@@ -57,8 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         var exampleImages = [
-            'static/img/cover image.png',
-            'static/img/stego image.png',
+            'static/img/cover_image.png',
+            'static/img/stego_image.png',
             'static/img/985.png'
         ];
 

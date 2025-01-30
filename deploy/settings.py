@@ -56,7 +56,6 @@ MIDDLEWARE = [
 # CORS configuration
 CORS_ALLOWED_ORIGINS = [
     "https://huggingface.co",
-    "https://stegoapp-catalina-delgados-projects.vercel.app/",
     # Agrega otros orígenes permitidos aquí
 ]
 
