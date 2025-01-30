@@ -1,34 +1,8 @@
-import json
-from django.http import JsonResponse
-from django.views import View
-from .api_stego.generate_map import Map
-import os
-
 from django.shortcuts import render
-from django.http import HttpResponse
 
 def home(request):
     return render(request, 'index.html')
 
-class GenerateGradCAMView(View):
-    def post(self, request):
-        model_name = request.POST.get('model_name')
-        if not model_name:
-            return JsonResponse({"error": "model_name parameter is required"}, status=400)
-
-        image_url = request.POST.get('image_src')
-        if not image_url:
-            return JsonResponse({"error": "imageSrc parameter is required"}, status=400)
-        
-        map = Map(model_name, image_url)
-        gradcam_data = map.generate_gradcam()
-        
-        with open('api_data.json', 'w') as json_file:
-            json.dump(gradcam_data, json_file)
-
-        return JsonResponse(gradcam_data)
-
-class ModelsView(View):
     def get(self, request):
         models_dir = os.path.join(os.path.dirname(__file__), 'api_stego/models')
         if not os.path.exists(models_dir):
