@@ -42,10 +42,10 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log(modelCode);
         
         if (modelCode=='modelo1') {
-            URL = 'https://huggingface.co/spaces/MarilineDelgado/stegoapi/generate_gradCam/'
+            URL = 'http://127.0.0.1:8000/routers/predict-cvt/'
         }
         else {
-            URL = 'http://127.0.0.1:8000/generate_gradCam/'
+            URL = 'http://127.0.0.1:8000/routers/predict-swint/'
         }
         
         fetch(URL, {
