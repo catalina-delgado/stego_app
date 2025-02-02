@@ -42,10 +42,10 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log(modelCode);
         
         if (modelCode=='modelo1') {
-            URL = 'http://127.0.0.1:8000/routers/predict-cvt/'
+            URL = 'https://stegoinference.azurewebsites.net/routers/predict-cvt/'
         }
         else {
-            URL = 'http://127.0.0.1:8000/routers/predict-swint/'
+            URL = 'https://stegoinference.azurewebsites.net/routers/predict-swint/'
         }
         
         fetch(URL, {
