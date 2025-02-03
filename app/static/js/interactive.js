@@ -38,8 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Crear un objeto FormData para enviar la imagen en el cuerpo de la solicitud
         const formData = new FormData();
         formData.append('image', imageSrc);
-
-        console.log(modelCode);
         
         if (modelCode=='modelo1') {
             URL = 'https://stegoinference.azurewebsites.net/routers/predict-cvt/'
@@ -52,9 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
             method: 'POST',
             body: formData,
             headers: {
-                'X-CSRFToken': csrftoken
+                'X-CSRFToken': csrftoken,
+                'Accept': 'application/json'
             },
-            mode: "cors",
         })
         .then(response => response.json())
         .then(data => {
