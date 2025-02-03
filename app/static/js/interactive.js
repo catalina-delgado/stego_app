@@ -63,8 +63,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const modelPathElement = document.getElementById('prediction');
             const layerNameElement = document.getElementById('classPrediction');
 
-            modelPathElement.textContent = '-% ' + (data.prediction_percentage * 100).toFixed(2);
-            if (layerNameElement) layerNameElement.textContent = data.predicted_class;
+            modelPathElement.textContent = '% ' + (data.prediction_percentage * 100).toFixed(2);
+            if (layerNameElement) layerNameElement.textContent = '- ' + data.predicted_class;
+
+            if (data.predicted_class = 'cover') {
+                layerNameElement.classList.add('cover');
+            }else{
+                layerNameElement.classList.add('stego');
+            }
 
             if (data.image) {
                 const ImageContiner = document.getElementById('results');
@@ -84,5 +90,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('modelSelect').addEventListener('change', handleModelSelectChange);
     document.getElementById('playBoton').addEventListener('click', handleModelSelectChange);
+    document.getElementById('playBoton-desk').addEventListener('click', handleModelSelectChange);
 
 });

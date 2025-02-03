@@ -15,31 +15,20 @@
     <div class="continer-fluid">
       <div class="row" style="--bs-gutter-x:0">
         <div class="pop-up"><div id="example_images"></div></div>
-        <div class="col-3 p-0 d-lg-block">
+        <div class="d-lg-block">
           <div class="position-fixed vh-100 p-3"> 
             <img src="static/img/logo.jpg" alt="BioIATeam" style="display: none;">
           </div>
-          <div class="sidebar">
-            <label for="uploadBoton" class="button"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
-            <input type="file" id="uploadBoton" accept=".jpg, .png, .pgm" class="d-none">
-            <div class="tooltip">Upload Image</div>
-          <div>
-            <button id="exampleImageBoton"><i class="fa-regular fa-images"></i></button>
-            <div class="tooltip">Example Images</div>
-          </div>
-          <div class="horizontal-separator"></div>
-          <div>
-            <button id="downloadBoton"><i class="fa-solid fa-download"></i></button>
-            <div class="tooltip">Download Current Image</div>
-          </div>
         </div>
-        </div>
-        <div class="col-9">
-          <div class="title">Steganalysis</div>
-          <div class="row">
+        <div class="loader" id="loader"></div>
+        <div class="col-12 mb-80 ">
+          <div class="band">
+            <div class="title azul">Steganalysis</div>
+          </div>
+          <div class="row fit-content m-auto">
             <div class="topbar">
               <select id="modelSelect">
-                  <option value="">Select</option>
+                  <option value="">Select model</option>
                   <option value="modelo1">CVT</option>
                   <option value="modelo2">SwinTBlocks</option>
               </select>
@@ -49,16 +38,11 @@
                   <div id="precsion">-%</div>
                 </div>          
               </div> -->
-              <div class="topbar-button">
-                <div class="loader" id="loader"></div>
-                <button id="playBoton"><i class="fa-solid fa-play"></i></button>
-                <div class="tooltip">Run</div>
-              </div>
               <div class="vertical-separator"></div>
               <div class="console" id="console">
                 <div class="column">
                   <label>Prediction:</label>
-                  <div id="prediction">-%</div>
+                  <div id="prediction">%</div>
                 </div>
                 <div class="column">
                   <label>Class:</label>
@@ -67,24 +51,70 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col w-50 p-0 scble-column">
-              <p class="p-3 m-3 title">Your Image</p>
-              <div id="your_image" class="graph-continer">
-                
-              </div>
-            </div>
-            <div class="col w-50 p-0">
-                <p class="p-3 m-3 title">Results</p>
-                <div id="results" class="graph-continer">
-
+          <div class="row wh-50 nowrap-flex scrollable-column m-auto">
+            <div class="col p-0 relative">
+              <div class="sidebar left">
+                <div>
+                  <input type="file" id="u-desk" accept=".jpg, .png, .pgm" class="d-none">
+                  <label for="u-desk" class="button"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
+                  <div class="tooltip">Upload Image</div>
+                </div>
+                <div>
+                  <button id="exampleImageBoton-desk"><i class="fa-regular fa-image"></i></button>
+                  <div class="tooltip">Example Images</div>
                 </div>
               </div>
+              <p class="p-3 m-3 title fit-content m-auto">Your Image</p>
+              <div id="your_image" class="graph-continer m-auto"></div>
+            </div>
+            <div class="col p-0 relative">
+              <div class="sidebar right">
+                <div class="topbar-button">
+                  <button id="playBoton-desk" class="azul"><i class="fa-solid fa-play"></i></button>
+                  <div class="tooltip">Run</div>
+                </div>
+                <div>
+                  <button id="d-desk"><i class="fa-solid fa-download"></i></button>
+                  <div class="tooltip">Download Current Image</div>
+                </div>
+              </div>
+              <p class="p-3 m-3 title fit-content m-auto">Results</p>
+              <div id="results" class="graph-continer m-auto"></div>
             </div>
           </div>
         </div>
       </div>
+      <div class="sidebar-h">
+        <div class="h fit-content m-auto">
+          <div class="relative">
+            <label for="uploadBoton" class="button"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
+            <input type="file" id="uploadBoton" accept=".jpg, .png, .pgm" class="d-none">
+            <div class="label">Upload</div>
+          </div>
+          <div class="relative">
+            <button id="exampleImageBoton"><i class="fa-regular fa-images"></i></button>
+            <div class="label">Gallery</div>
+          </div>
+          <div class="vertical-separator"></div>
+          <div class="relative">
+            <button id="playBoton"><i class="fa-solid fa-play"></i></button>
+            <div class="label">Run</div>
+          </div>
+          <div class="relative">
+            <button id="downloadBoton"><i class="fa-solid fa-download"></i></button>
+            <div class="label">Download</div>
+          </div>
+        </div>
+      </div>
     </div>
+    <footer>
+      <p>&copy; 2025 Catalina Delgado. All rights reserved.</p>
+      <p>
+        <a href="https://github.com/catalina-delgado/Master-Project" target="_blank" class="footer-link">
+          <i class="fa-brands fa-github"></i> View project on GitHub
+        </a>
+      </p>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
     <script src="{% static 'js/clicsManager.js' %}"></script>
