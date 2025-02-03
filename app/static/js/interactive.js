@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         const loader = document.getElementById('loader');
-        loader.style.display = 'block';
+        loader.style.display = 'flex';
 
         // Crear un objeto FormData para enviar la imagen en el cuerpo de la solicitud
         const formData = new FormData();
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
             modelPathElement.textContent = '% ' + (data.prediction_percentage * 100).toFixed(2);
             if (layerNameElement) layerNameElement.textContent = '- ' + data.predicted_class;
 
-            if (data.predicted_class = 'cover') {
+            if (data.predicted_class == 'cover') {
                 layerNameElement.classList.add('cover');
             }else{
                 layerNameElement.classList.add('stego');

@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'MC123MC123')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
 
@@ -56,6 +56,9 @@ MIDDLEWARE = [
 # CORS configuration
 CORS_ALLOWED_ORIGINS = [
     "https://huggingface.co",
+    "https://stegoinference.azurewebsites.net",
+    "https://www.boxia.site",
+    "http://127.0.0.1:8080"
     # Agrega otros orígenes permitidos aquí
 ]
 
