@@ -18,32 +18,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function handleModelSelectChange() {
         const imageElement = document.getElementById('your_image');
-        const imageSrc = imageElement && imageElement.firstElementChild ? imageElement.firstElementChild.src : '';
+        imageSrc = imageElement && imageElement.firstElementChild ? imageElement.firstElementChild.src : '';
         const modelCode = document.getElementById('modelSelect').value;
 
+        console.log(imageSrc);
         if (!imageSrc) {
             alert('Please upload an image');
-            return;
-        }
-        try {
-            new URL(imageSrc);
-        } catch (_) {
-            alert('Invalid image URL');
             return;
         }
         
         const loader = document.getElementById('loader');
         loader.style.display = 'flex';
 
-        // Crear un objeto FormData para enviar la imagen en el cuerpo de la solicitud
+        // Objeto FormData
         const formData = new FormData();
         formData.append('image', imageSrc);
         
         if (modelCode=='modelo1') {
-            URL = 'https://stegoinference.azurewebsites.net/routers/predict-cvt/'
+            URL = 'http://127.0.0.1:8000/routers/predict-cvt'
         }
         else {
-            URL = 'https://stegoinference.azurewebsites.net/routers/predict-swint/'
+            URL = 'http://127.0.0.1:8000/routers/predict-swint'
         }
         
         fetch(URL, {
@@ -65,8 +60,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (layerNameElement) layerNameElement.textContent = '- ' + data.predicted_class;
 
             if (data.predicted_class == 'cover') {
+                layerNameElement.classList.remove('stego');
                 layerNameElement.classList.add('cover');
             }else{
+                layerNameElement.classList.add('cover');
                 layerNameElement.classList.add('stego');
             }
 
@@ -87,7 +84,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     document.getElementById('modelSelect').addEventListener('change', handleModelSelectChange);
-    document.getElementById('playBoton').addEventListener('click', handleModelSelectChange);
-    document.getElementById('playBoton-desk').addEventListener('click', handleModelSelectChange);
-
+    document.getElementById('playBoton').addEventListener('click', function () {
+        valueSelect = document.getElementById('modelSelect').value
+        if (valueSelect != "") {
+            handleModelSelectChange()
+        }else {
+            alert('Please select a model to do the inference');
+        }
+    });
+    document.getElementById('playBoton-desk').addEventListener('click', function () {
+        valueSelect = document.getElementById('modelSelect').value
+        if (valueSelect != "") {
+            handleModelSelectChange()
+        }else {
+            alert('Please select a model to do the inference');
+        }
+    });
 });

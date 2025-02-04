@@ -66,12 +66,12 @@ body {
   }
 
   .cover {
-    background: #c3f9c3;
-    color: #188e18;
+    background: #c3f9c3!important;
+    color: #188e18!important;
   }
   .stego {
-    background: #ffbbb9;
-    color: #f24441;
+    background: #ffbbb9!important;
+    color: #f24441!important;
   }
 
   .verde{
