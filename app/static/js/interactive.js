@@ -35,10 +35,10 @@ document.addEventListener('DOMContentLoaded', function() {
         formData.append('image', imageSrc);
         
         if (modelCode=='modelo1') {
-            URL = 'https://stegoinference.azurewebsites.net/routers/predict-cvt'
+            URL = 'https://apistegoinference.azurewebsites.net/routers/predict-cvt'
         }
         else {
-            URL = 'https://stegoinference.azurewebsites.net/routers/predict-swint'
+            URL = 'https://apistegoinference.azurewebsites.net/routers/predict-swint'
         }
         
         fetch(URL, {
