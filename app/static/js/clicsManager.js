@@ -106,7 +106,8 @@ function example_image_function(params) {
     var exampleImages = [
         'static/img/cover_image.png',
         'static/img/stego_image.png',
-        'static/img/985.png'
+        'static/img/985.png',
+        'static/img/WOW-stego.png'
     ];
 
     var divExampleImages = document.getElementById('example_images');

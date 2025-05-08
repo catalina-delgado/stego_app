@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         console.log(imageSrc);
         if (!imageSrc) {
-            alert('Please upload an image');
             return;
         }
         
@@ -35,10 +34,16 @@ document.addEventListener('DOMContentLoaded', function() {
         formData.append('image', imageSrc);
         
         if (modelCode=='modelo1') {
-            URL = 'https://apistegoinference.azurewebsites.net/routers/predict-cvt'
+            URL = 'https://apistegoinference.azurewebsites.net/routers/predict-capsnet'
+        }
+        else if (modelCode=='modelo2') {
+            URL = 'https://apistegoinference.azurewebsites.net/routers/predict-transformer'
+        }
+        else if (modelCode=='modelo3') {
+            URL = 'https://apistegoinference.azurewebsites.net/routers/predict-kan'
         }
         else {
-            URL = 'https://apistegoinference.azurewebsites.net/routers/predict-swint'
+            URL = 'https://apistegoinference.azurewebsites.net/routers/predict-rsit'
         }
         
         fetch(URL, {
