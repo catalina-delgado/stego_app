@@ -35,9 +35,9 @@ Replace {model} with:
 |Model    | Endpoint|
 |---------|-------|
 | Capsnet | `POST /routers/predict-capsule`   |
-| Transformer | `POST /routers/predict-cvt`  |
+| Transformer | `POST /routers/predict-transformer`  |
 | KAN | `POST /routers/predict-kan`  | 
-| R-SIT | `POST /routers/predict-swint`  | 
+| R-SIT | `POST /routers/predict-rsit`  | 
 
 ### Response Format
 ```json
@@ -52,7 +52,7 @@ Replace {model} with:
 
 ### JavaScript example
 ```javascript
-const URL = 'https://apistegoinference.azurewebsites.net/routers/predict-swint';
+const URL = 'https://apistegoinference.azurewebsites.net/routers/predict-rsit';
 
 const formData = new FormData();
 formData.append('image', selectedFile);  // donde `selectedFile` es un File del input
